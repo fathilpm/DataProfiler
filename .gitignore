@@ -6,20 +6,23 @@ __pycache__/
 *.py[cod]
 *.pyo
 
-# VS Code
+# IDE
 .vscode/
 
 # Reports
-reports/*.html
-reports/*.pdf
-reports/*.md
+reports/
 
 # Logs
 *.log
 
-# Testing
+# Test cache
 .pytest_cache/
 
-# OS
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
 .DS_Store
+
+# Windows
 Thumbs.db
