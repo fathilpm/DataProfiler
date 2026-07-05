@@ -132,7 +132,6 @@ class PDFExporter:
         if profile.quality_report:
             qr = profile.quality_report
             story.append(Paragraph("Data Quality", h2_style))
-            pks = ", ".join(qr.primary_key_candidates) or "None detected"
             quality_data = [
                 ["Check", "Result"],
                 ["Constant Columns", ", ".join(qr.constant_columns) or "None"],
