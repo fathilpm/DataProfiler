@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "dataprofiler"
+version = "0.8.0"
+description = "A modular and extensible Python application for profiling datasets before analysis or machine learning."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+keywords = ["data", "profiling", "eda", "pandas", "data-quality"]
+
+dependencies = [
+    "pandas>=2.3.0",
+    "openpyxl>=3.1.5",
+    "xlrd>=2.0.2",
+]
+
+[project.optional-dependencies]
+viz = ["plotly>=5.22.0", "scipy>=1.13.0"]
+pdf = ["reportlab>=4.2.0"]
+app = ["streamlit>=1.36.0"]
+all = [
+    "plotly>=5.22.0",
+    "scipy>=1.13.0",
+    "reportlab>=4.2.0",
+    "streamlit>=1.36.0",
+]
+
+[project.scripts]
+dataprofiler = "app.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["profiler*", "app*", "streamlit_app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

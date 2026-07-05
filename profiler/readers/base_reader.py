@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from pathlib import Path
 
-import pandas as pd
+from profiler.models.dataset import Dataset
 
 
 class BaseReader(ABC):
@@ -10,8 +12,8 @@ class BaseReader(ABC):
     """
 
     @abstractmethod
-    def read(self, file_path: Path) -> pd.DataFrame:
+    def read(self, file_path: Path) -> Dataset:
         """
-        Read a dataset and return it as a pandas DataFrame.
+        Read a file and return it as a Dataset.
         """
         pass
