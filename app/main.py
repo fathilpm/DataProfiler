@@ -13,7 +13,7 @@ from profiler.report.markdown_reporter import MarkdownReporter
 
 def main() -> None:
 
-    file_path = Path("examples/sample.csv")
+    file_path = Path("examples/test_dataset.csv")
 
     # Load
     reader = ReaderFactory.get_reader(file_path)

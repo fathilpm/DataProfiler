@@ -24,6 +24,7 @@ from profiler.engine.profiler_engine import ProfilerEngine
 from profiler.exporters.html import HTMLExporter
 from profiler.exporters.json import JSONExporter
 from profiler.exporters.markdown import MarkdownExporter
+from profiler.exporters.pdf import PDFExporter
 from profiler.models.dataset import Dataset
 from profiler.models.datasource import DataSource
 from profiler.utils.size_formatter import SizeFormatter
@@ -420,4 +421,19 @@ with tab_export:
         data=md_bytes,
         file_name=f"{Path(profile.dataset_name).stem}_report.md",
         mime="text/markdown",
+    )
+
+    st.markdown("---")
+
+    # PDF export
+    st.markdown("#### PDF Report")
+    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
+        pdf_path = Path(tmp.name)
+    PDFExporter.export(profile, pdf_path)
+    pdf_bytes = pdf_path.read_bytes()
+    st.download_button(
+        "⬇ Download PDF Report",
+        data=pdf_bytes,
+        file_name=f"{Path(profile.dataset_name).stem}_report.pdf",
+        mime="application/pdf",
     )

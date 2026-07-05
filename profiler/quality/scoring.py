@@ -78,7 +78,7 @@ class QualityScorer:
                 f"Constant column(s) with a single value: {joined}."
             )
             recommendations.append(
-                "Remove constant columns — they carry no information."
+                "Remove constant columns - they carry no information."
             )
 
         if mixed_types:
@@ -94,7 +94,7 @@ class QualityScorer:
             joined = ", ".join(outlier_columns)
             warnings.append(f"Outliers detected in column(s): {joined}.")
             recommendations.append(
-                "Investigate outliers — they may be errors or rare events."
+                "Investigate outliers - they may be errors or rare events."
             )
 
         # --- Health score computation ---
