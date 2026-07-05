@@ -134,7 +134,8 @@ with st.sidebar:
 
     run_stats = st.checkbox("Statistics", value=True)
     run_quality = st.checkbox("Data Quality", value=True)
-    top_n = st.slider("Top N categorical values", 3, 20, 5)
+    top_n = st.slider("Top N categorical values", 3, 20, 5, help="Controls how many distinct values to show in the Statistics tab for text/category columns.")
+    preview_rows = st.slider("Preview rows", 5, 100, 20, help="Controls how many rows to show in the Data Preview table.")
 
     st.markdown("---")
     st.markdown("### About")
@@ -234,8 +235,8 @@ with tab_overview:
                 st.success("No deductions — perfect score!")
 
     st.markdown("---")
-    st.markdown("### 📄 Data Preview")
-    st.dataframe(df.head(20), use_container_width=True)
+    st.markdown(f"### 📄 Data Preview (First {preview_rows} Rows)")
+    st.dataframe(df.head(preview_rows), use_container_width=True)
 
 
 # ── Tab: Columns ─────────────────────────────────────────────────────────────
