@@ -1,20 +1,27 @@
 from dataclasses import dataclass, field
-from typing import Any
+
+from profiler.analyzers.completeness import CompletenessResult
 
 
-@dataclass
+@dataclass(slots=True)
 class ColumnProfile:
     """Stores profiling information for a single column."""
 
     name: str
     dtype: str
+
+    nullable: bool
+
     missing_count: int
     missing_percentage: float
+
     unique_count: int
+    unique_percentage: float
+
     memory_usage: int
 
 
-@dataclass
+@dataclass(slots=True)
 class DatasetProfile:
     """Stores profiling information for an entire dataset."""
 
@@ -27,6 +34,6 @@ class DatasetProfile:
 
     memory_usage: int
 
-    preview: list[dict[str, Any]] = field(default_factory=list)
+    completeness: CompletenessResult
 
     column_profiles: list[ColumnProfile] = field(default_factory=list)
