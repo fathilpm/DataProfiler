@@ -37,6 +37,10 @@ class OutlierDetector:
         results: dict[str, OutlierResult] = {}
 
         for col in df.select_dtypes(include="number").columns:
+            # Skip boolean columns or binary/one-hot encoded columns (<= 2 unique values)
+            if pd.api.types.is_bool_dtype(df[col]) or df[col].nunique() <= 2:
+                continue
+                
             series = df[col].dropna()
             if series.empty:
                 continue
